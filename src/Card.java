@@ -8,10 +8,6 @@ class Card {
         this.rank = rank;
     }
 
-    public boolean isFirstElementInteger() {
-        return Character.isDigit(rank.charAt(0));
-    }
-
     @Override
     public String toString() {
         return rank + " of " + suit;
