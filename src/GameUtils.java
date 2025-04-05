@@ -9,16 +9,30 @@ public class GameUtils {
     }
 
     public static void askToPlayAgain(Player player) {
-        System.out.print("Would you like to play again? (YES/NO): ");
-        player.incrementHands();
-        String response = input.nextLine();
-        if (response.equalsIgnoreCase("yes")) {
-            player.resetPlayerHand();
-            CardGame.startGame(player); // Call startGame from CardGame
-        } else {
-            System.out.println("Thanks for playing! Goodbye.");
-            input.close();
+        if (player.getChips() == 0){
+            System.out.print("Thanks for playing! ");
             System.exit(0);
+        }
+        if (player.getHandsPlayed() == 1) {
+            Shop shop = new Shop(player);
+            shop.displayShop();
+            System.out.print("Enter choice (yes/no): ");
+            String choice = input.nextLine();
+            shop.attemptUpgrade(choice);
+            player.setRewardMultiplier(shop.getRewardMultiplier());
+            CardGame.startGame(player);
+        }else {
+            System.out.print("Would you like to play again? (YES/NO): ");
+            player.incrementHands();
+            String response = input.nextLine();
+            if (response.equalsIgnoreCase("yes")) {
+                player.resetPlayerHand();
+                CardGame.startGame(player);
+            } else {
+                System.out.println("Thanks for playing! Goodbye.");
+                input.close();
+                System.exit(0);
+            }
         }
     }
 

@@ -11,9 +11,9 @@ class Shop {
 
     public void displayShop() {
         System.out.println("Welcome to the Shop!");
-        System.out.println("Current Reward Multiplier: " + rewardMultiplier);
+        System.out.println("Current Reward Multiplier: " + player.rewardMultiplier);
         System.out.println("Chips Available: " + player.getChips());
-        System.out.println("Upgrade Cost: " + upgradeCost + " chips");
+        System.out.println("Upgrade Cost: " + (upgradeCost) + " chips");
     }
 
     public void attemptUpgrade(String choice) {

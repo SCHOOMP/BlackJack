@@ -14,23 +14,15 @@ public class CardGame {
     // ==============================
 
     public static void startGame(Player player) {
-
-        if (player.getHandsPlayed() == 2) {
-            Shop shop = new Shop(player);
-            shop.displayShop();
-
-            System.out.print("Enter choice (yes/no): ");
-            String choice = input.nextLine();
-            shop.attemptUpgrade(choice);
-
-            player.setRewardMultiplier(shop.getRewardMultiplier());
-        }
-
         Deck gameDeck = new Deck();
         gameDeck.shuffle();
 
         System.out.print("Enter a bet: ");
         int bet = Integer.parseInt(input.nextLine());
+        if (bet > player.chips){
+            System.out.println("Not enough chips! Try again!! ");
+            startGame(player);
+        }
 
         // Initial cards
         Card firstCard = gameDeck.deal(1).getFirst();
